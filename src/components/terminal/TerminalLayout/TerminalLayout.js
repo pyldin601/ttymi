@@ -2,18 +2,18 @@ import React from 'react';
 import * as PropTypes from 'prop-types'
 import styles from './TerminalLayout.css';
 
-const TerminalLayout = ({ sidebar, body }) => {
+const TerminalLayout = ({ sidebar, content }) => {
   return (
-    <div className={styles.wrap}>
-      <div className={styles.sidebar}>{sidebar}</div>
-      <div className={styles.body}>{body}</div>
+    <div className={styles.layout}>
+      <div className={styles.sidebarWrap}>{sidebar}</div>
+      <div className={styles.contentWrap}>{content}</div>
     </div>
   );
 };
 
 TerminalLayout.propTypes = {
   sidebar: PropTypes.node.isRequired,
-  body: PropTypes.node.isRequired,
+  content: PropTypes.node.isRequired,
 };
 
 export default TerminalLayout;
