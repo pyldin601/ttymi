@@ -1,5 +1,5 @@
 import React from 'react';
-import * as PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types';
 import styles from './TerminalLayout.css';
 
 const TerminalLayout = ({ sidebar, content }) => {

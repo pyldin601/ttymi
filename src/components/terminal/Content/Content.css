@@ -1,1 +1,8 @@
-.content {}
+@value main-font from '../../../styles/fonts.css';
+
+@value color1 from "../../../styles/colors.css";
+
+.content {
+  font-family: main-font, sans-serif;
+  background-color: color1;
+}

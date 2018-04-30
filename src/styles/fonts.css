@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+@value main-font: 'Montserrat';
+
+@value size1: 7px;
+@value size2: 8px;
+@value size3: 10px;
+@value size4: 12px;
+@value size5: 14px;
+@value size6: 18px;

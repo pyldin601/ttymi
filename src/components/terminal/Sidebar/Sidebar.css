@@ -1,1 +1,5 @@
-.sidebar {}
+@value color3 from '../../../styles/colors.css';
+
+.sidebar {
+  background-color: color3;
+}
