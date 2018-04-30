@@ -3,8 +3,8 @@
 @value color3, color8 from '../../../styles/colors.css';
 
 .sidebar {
-  font-family: main-font, sans-serif;
-  background-color: color3;
-  color: color8;
+  /*font-family: main-font, sans-serif;*/
+  /*background-color: color3;*/
+  /*color: color8;*/
   height: 100%;
 }
