@@ -1,7 +1,5 @@
-import http from 'http';
+import createApp from './app';
 
-const server = http.createServer((req, res) => {
-  res.end('OK');
-});
+const app = createApp();
 
-server.listen(process.env.PORT || 3001);
+app.listen(process.env.PORT || 3001);
