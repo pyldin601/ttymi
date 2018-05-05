@@ -6,4 +6,7 @@ export const wsRouter = new KoaRouter();
 
 router.post('/connect', async (ctx) => {});
 
-wsRouter.get('/attach/:id', async (ctx) => {});
+wsRouter.get('/attach/:id', async (ctx) => {
+  const { id } = ctx.params;
+  ctx.websocket.send(`Hello, ${id}!`);
+});
