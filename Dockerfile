@@ -4,8 +4,8 @@ ENV NODE_ENV production
 
 WORKDIR /service
 
-COPY package.json .
-COPY package-lock.json .
+COPY package.json ./
+COPY package-lock.json ./
 
 RUN npm i
 
