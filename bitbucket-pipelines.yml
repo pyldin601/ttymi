@@ -5,7 +5,6 @@ pipelines:
           services:
             - docker
           script:
-            - export IMAGE_NAME=pldin601/etty-web
             - docker build -t $IMAGE_NAME:latest .
             - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
             - docker tag $IMAGE_NAME:latest $IMAGE_NAME:$BITBUCKET_COMMIT
