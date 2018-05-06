@@ -63,9 +63,10 @@
     "winston": "^2.4.2"
   },
   "scripts": {
-    "start": "concurrently --kill-others-on-fail --names CLI,SER \"npm run start:client\" \"npm run start:server\"",
+    "start": "node build/server/index.js",
+    "dev": "concurrently --kill-others-on-fail --names CLI,SER \"npm run start:client\" \"npm run start:server\"",
     "build:client": "node scripts/build.js",
-    "build:server": "cross-env NODE_ENV=production babel server/src -d server/dist",
+    "build:server": "cross-env NODE_ENV=production babel server/src -d build/server",
     "build": "npm run build:server && npm run build:client",
     "test": "node scripts/test.js --env=jsdom",
     "start:client": "node scripts/start.js",

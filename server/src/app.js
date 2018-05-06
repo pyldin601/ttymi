@@ -10,7 +10,7 @@ export default function createApp() {
   const app = websockify(new Koa());
 
   if (environment === 'production') {
-    app.use(serve('build'));
+    app.use(serve('build/assets'));
   }
 
   app.use(router.routes());

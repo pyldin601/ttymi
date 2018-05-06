@@ -1,7 +1,6 @@
 FROM node:8
 
 ENV NODE_ENV production
-ENV PORT 3001
 
 WORKDIR /service
 
@@ -14,6 +13,6 @@ COPY . ./
 
 RUN npm run build
 
-CMD node server/dist/index.js
+CMD npm start
 
 EXPOSE 3001
