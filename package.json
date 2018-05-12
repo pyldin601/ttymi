@@ -9,15 +9,19 @@
     "prebuild": "npm run clean",
     "start": "node dist/start.js",
     "prestart": "npm run build",
+    "dev": "cross-env NODE_ENV=development ts-node src/start.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "^5.1.5",
     "inversify": "^4.11.1",
     "koa": "^2.5.0",
+    "koa-websocket": "^4.1.0",
     "reflect-metadata": "^0.1.12",
+    "ts-node": "^6.0.3",
     "typescript": "^2.7.2"
   },
   "devDependencies": {
