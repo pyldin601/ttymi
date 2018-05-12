@@ -7,25 +7,28 @@
     "clean": "rimraf dist",
     "build": "tsc",
     "prebuild": "npm run clean",
-    "start": "node dist/start.js",
+    "start": "cross-env NODE_ENV=production node dist/start.js",
     "prestart": "npm run build",
-    "dev": "cross-env NODE_ENV=development ts-node src/start.ts",
+    "dev": "cross-env NODE_ENV=development nodemon --watch src --exec ts-node src/start.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/koa-router": "^7.0.28",
     "cross-env": "^5.1.5",
     "inversify": "^4.11.1",
     "koa": "^2.5.0",
+    "koa-router": "^7.4.0",
     "koa-websocket": "^4.1.0",
+    "nodemon": "^1.17.4",
     "reflect-metadata": "^0.1.12",
     "ts-node": "^6.0.3",
     "typescript": "^2.7.2"
   },
   "devDependencies": {
-    "@types/koa": "^2.0.44",
+    "@types/koa": "^2.0.45",
     "rimraf": "^2.6.2"
   }
 }
