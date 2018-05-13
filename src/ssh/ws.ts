@@ -1,4 +1,27 @@
 import * as logger from '../utils/logger';
+import { connectByPassword } from './connect';
+
+export async function startClient(ws) {
+  const onClose = () => {
+    logger.info('Connection closed before initialized');
+  };
+
+  const onMessage = async (msg: string) => {
+    try {
+      const { host, port, username, password } = JSON.parse(msg);
+
+      const stream = await connectByPassword(host, port, username, password);
+      attachStreamToWebSocket(stream, ws);
+
+      ws.removeListener('close', onClose);
+    } catch (e) {
+      ws.send('Bad connection object');
+    }
+  };
+
+  ws.once('message', onMessage);
+  ws.once('close', onClose);
+}
 
 export function attachStreamToWebSocket(stream, ws) {
   const onStreamData = data => {
@@ -11,23 +34,27 @@ export function attachStreamToWebSocket(stream, ws) {
   };
 
   const onMessage = raw => {
-    const { type, ...message } = JSON.parse(raw);
+    try {
+      const { type, ...message } = JSON.parse(raw);
 
-    switch (type) {
-      case 'input': {
-        const { data } = message;
-        stream.write(data);
-        break;
+      switch (type) {
+        case 'input': {
+          const { data } = message;
+          stream.write(data);
+          break;
+        }
+
+        case 'resize': {
+          const { size: { rows, cols } } = message;
+          stream.setWindow(rows, cols);
+          break;
+        }
+
+        default:
+          ws.send(`Unknown message type - ${type}`);
       }
-
-      case 'resize': {
-        const { size: { rows, cols } } = message;
-        stream.setWindow(rows, cols);
-        break;
-      }
-
-      default:
-        logger.warn(`Unknown message type - ${type}`);
+    } catch (e) {
+      ws.send(`Can't parse input message`);
     }
   };
 
