@@ -1,6 +1,6 @@
 import * as logger from '../utils/logger';
 
-function attachStreamToWebSocket(stream, ws) {
+export function attachStreamToWebSocket(stream, ws) {
   const onStreamData = data => {
     ws.send(String(data));
   };

@@ -1,4 +1,4 @@
-import winston from 'winston';
+import * as winston from 'winston';
 
 export function info(message: string, ...args: any[]) {
   winston.info(message, ...args);
