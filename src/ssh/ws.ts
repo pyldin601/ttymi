@@ -16,6 +16,7 @@ export async function startClient(ws) {
       ws.removeListener('close', onClose);
     } catch (e) {
       ws.send('Bad connection object');
+      ws.terminate();
     }
   };
 
