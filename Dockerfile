@@ -1,5 +1,8 @@
 FROM node:8
 
+ARG version=none
+ENV APP_VERSION=$version
+
 WORKDIR /app
 
 COPY package.json ./

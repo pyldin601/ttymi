@@ -1,4 +1,5 @@
+import router from "./router";
 import wsRouter from "./wsRouter";
 
-export { wsRouter };
+export { router, wsRouter };
 
