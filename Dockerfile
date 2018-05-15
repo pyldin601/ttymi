@@ -2,7 +2,7 @@ FROM node:8
 
 ENV NODE_ENV production
 
-WORKDIR /service
+WORKDIR /app
 
 COPY package.json ./
 COPY package-lock.json ./
@@ -13,6 +13,4 @@ COPY . ./
 
 RUN npm run build
 
-CMD npm start
-
-EXPOSE 3001
+CMD npm run serve
