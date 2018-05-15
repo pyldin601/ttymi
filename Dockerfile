@@ -1,6 +1,9 @@
 FROM node:8
 
-ENV NODE_ENV production
+ENV PORT 8080
+EXPOSE $PORT
+
+RUN npm i -g serve
 
 WORKDIR /app
 
@@ -13,4 +16,5 @@ COPY . ./
 
 RUN npm run build
 
-CMD npm run serve
+CMD serve --port $PORT build
+
