@@ -1,15 +1,28 @@
 pipelines:
-  branches:
-    production:
+  default:
+    - step:
+        services:
+          - docker
+        script:
+          - export IMAGE_NAME=sshify/ttymi-client
+          - docker build -t $IMAGE_NAME:$BITBUCKET_COMMIT .
+          - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
+          - docker push $IMAGE_NAME:$BITBUCKET_COMMIT
+          - docker tag $IMAGE_NAME:$BITBUCKET_COMMIT $IMAGE_NAME:latest
+          - docker push $IMAGE_NAME:latest
+
+  tags:
+    v*:
       - step:
+          deployment: production
           services:
             - docker
           script:
-            - docker build -t $IMAGE_NAME:latest .
+            - export IMAGE_NAME=sshify/ttymi-client
+            - docker build -t $IMAGE_NAME:$BITBUCKET_TAG .
             - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
-            - docker tag $IMAGE_NAME:latest $IMAGE_NAME:$BITBUCKET_COMMIT
-            - docker push $IMAGE_NAME:latest
-            - docker push $IMAGE_NAME:$BITBUCKET_COMMIT
+            - docker push $IMAGE_NAME:$BITBUCKET_TAG
       - step:
           script:
-            - ssh $DEPLOY_HOST -- docker service update --quiet --force --with-registry-auth --image=$IMAGE_NAME:latest $DEPLOY_SERVICE
+            - export IMAGE_NAME=sshify/ttymi-client
+            - ssh $DEPLOY_HOST -- docker service update --quiet --force --with-registry-auth --image=$IMAGE_NAME:$BITBUCKET_TAG $DEPLOY_SERVICE
