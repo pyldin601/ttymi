@@ -15,28 +15,10 @@ export interface ApplicationState {
     connection: ConnectionState,
     status: ConnectionStatus,
   }>;
-  newConnection: {
-    visible: boolean,
-    connection: ConnectionState,
-  };
-}
-
-export function getInitialConnectionState(): ConnectionState {
-  return {
-    name: '',
-    host: '',
-    port: '22',
-    user: '',
-    password: '',
-  };
 }
 
 export function getInitialApplicationState(): ApplicationState {
   return {
     openConnections: [],
-    newConnection: {
-      visible: true,
-      connection: getInitialConnectionState(),
-    },
   };
 }
