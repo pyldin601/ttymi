@@ -1,9 +1,4 @@
-FROM node:8
-
-ENV PORT 8080
-EXPOSE $PORT
-
-RUN npm i -g serve
+FROM node:8 as buildContainer
 
 WORKDIR /app
 
@@ -16,5 +11,16 @@ COPY . ./
 
 RUN npm run build
 
-CMD serve --port $PORT build
 
+FROM node:8
+
+WORKDIR /app
+
+ENV PORT 8080
+EXPOSE $PORT
+
+RUN npm i -g serve
+
+COPY --from=buildContainer /app/build/ /app/
+
+CMD serve --port $PORT .
