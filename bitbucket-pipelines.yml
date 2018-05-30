@@ -4,7 +4,6 @@ pipelines:
         services:
           - docker
         script:
-          - export IMAGE_NAME=sshify/ttymi-client
           - docker build -t $IMAGE_NAME:$BITBUCKET_COMMIT .
           - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
           - docker push $IMAGE_NAME:$BITBUCKET_COMMIT
@@ -18,11 +17,10 @@ pipelines:
           services:
             - docker
           script:
-            - export IMAGE_NAME=sshify/ttymi-client
             - docker build -t $IMAGE_NAME:$BITBUCKET_TAG .
             - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
             - docker push $IMAGE_NAME:$BITBUCKET_TAG
       - step:
           script:
             - export IMAGE_NAME=sshify/ttymi-client
-            - ssh $DEPLOY_HOST -- docker service update --quiet --force --with-registry-auth --image=$IMAGE_NAME:$BITBUCKET_TAG $DEPLOY_SERVICE
+            - ssh $DEPLOY_HOST -- docker service update --with-registry-auth --image=$IMAGE_NAME:$BITBUCKET_TAG $DEPLOY_SERVICE
