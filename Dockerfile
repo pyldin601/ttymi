@@ -19,8 +19,8 @@ WORKDIR /app
 ENV PORT 8080
 EXPOSE $PORT
 
-RUN npm i -g serve
+RUN npm i -g http-server
 
 COPY --from=buildContainer /app/build/ /app/
 
-CMD serve --port $PORT .
+CMD http-server . -p $PORT
