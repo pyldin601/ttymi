@@ -1,8 +1,10 @@
+// @flow
+
 import React from 'react';
 import { compose, withState, withHandlers } from 'recompose';
 
-const ConnectionForm = ({ host, username, password, handleChange, handleSubmit }) => (
-  <div>
+const Prompt = ({ host, username, password, handleChange, handleSubmit }) => (
+  <form onSubmit={handleSubmit}>
     <div>
       <label>
         Host:
@@ -21,8 +23,8 @@ const ConnectionForm = ({ host, username, password, handleChange, handleSubmit }
         <input type="password" name="password" value={password} onChange={handleChange} />
       </label>
     </div>
-    <button onClick={handleSubmit}>Connect</button>
-  </div>
+    <button type={"submit"}>Connect</button>
+  </form>
 );
 
 export default compose(
@@ -40,7 +42,8 @@ export default compose(
       }))
     },
     handleSubmit: ({ onSubmit, formState }) => evt => {
+      evt.preventDefault();
       onSubmit(formState);
     },
   })
-)(ConnectionForm);
+)(Prompt);
