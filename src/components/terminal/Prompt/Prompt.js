@@ -43,7 +43,7 @@ const Prompt = ({ host, username, password, handleChange, handleSubmit }) => (
           <button className={styles['form-button']}
                   type={"submit"}
           >
-            Connect
+            CONNECT
           </button>
         </div>
       </form>
