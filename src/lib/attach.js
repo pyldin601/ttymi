@@ -17,8 +17,12 @@ const bind = (xterm, ws) => {
 };
 
 export default (xterm, ws) => {
-  ws.onmessage = ({ data }) => xterm.write(data);
-  ws.onclose = () => xterm.write('\r\nConnection closed.\r\n');
+  return new Promise((resolve, reject) => {
+    ws.onmessage = ({ data }) => xterm.write(data);
+    ws.onclose = () => resolve();
+    ws.onerror = (err) => reject(err);
 
-  bind(xterm, ws);
+    bind(xterm, ws);
+
+  });
 };

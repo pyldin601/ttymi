@@ -27,7 +27,13 @@ export default class Terminal extends Component {
     this.ws = await connect(host, username, password);
 
     const xterm = this.openTerminal();
-    attach(xterm, this.ws);
+
+    try {
+      await attach(xterm, this.ws);
+      this.props.onDisconnect();
+    } catch (err) {
+      this.props.onError(err);
+    }
   }
 
   componentWillUnmount() {
@@ -38,3 +44,8 @@ export default class Terminal extends Component {
     return <div className={styles['terminal-wrap']} ref="xterm" />;
   }
 }
+
+Terminal.defaultProps = {
+  onDisconnect: () => {},
+  onError: () => {},
+};
