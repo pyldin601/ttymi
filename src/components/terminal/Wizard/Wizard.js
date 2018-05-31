@@ -24,7 +24,7 @@ const Wizard = ({ step, handleForm, handleError, handleDisconnect }) => {
 };
 
 export default compose(
-  withState('step', 'setStep', makeStep(Step.PROMPT)),
+  withState('step', 'setStep', makeStep(Step.PROMPT, {})),
   withHandlers({
     handleForm: ({ setStep }) => ({ host, username, password }) => {
       setStep(makeStep(Step.CONNECT, { host, username, password }));
