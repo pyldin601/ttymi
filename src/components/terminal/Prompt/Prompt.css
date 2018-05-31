@@ -1,48 +1,49 @@
 @value main-font from "../../../styles/fonts.css";
 @value color9 from "../../../styles/colors.css";
 
-.form-wrap {
+:local(.form-wrap) {
   font-family: main-font, sans-serif;
   display: table;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
 }
 
-.form-cell {
+:local(.form-cell) {
   display: table-cell;
   vertical-align: middle;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 40px;
+  padding-bottom: 40px;
   position: relative;
 }
 
-.form-heading {
+:local(.form-heading) {
   font-size: 28px;
   font-weight: 400;
   color: #434C5F;
   margin-bottom: 32px;
 }
 
-.form-content {
+:local(.form-content) {
   clear: both;
   width: 90%;
   max-width: 540px;
   margin: 0 auto;
 }
 
-.form-group {
+:local(.form-group) {
   position: relative;
   margin-bottom: 23px;
 }
 
-.form-label {
+:local(.form-label) {
   display: block;
   font-weight: 700;
   font-size: 11px;
   margin-bottom: 8px;
 }
 
-.form-input {
+:local(.form-input) {
   border: 1px solid #D4D9E2;
   border-radius: 3px;
   padding: 15px;
@@ -56,19 +57,19 @@
   box-sizing: border-box;
 }
 
-.form-input:focus {
+:local(.form-input:focus) {
   border-color: #8C96A9;
 }
 
-.form-input::placeholder {
+:local(.form-input::placeholder) {
   color: color9;
 }
 
-.form-footer {
+:local(.form-footer) {
   text-align: center;
 }
 
-.form-button {
+:local(.form-button) {
   display: inline-block;
   margin: 20px auto;
   background: #F36;
@@ -84,7 +85,7 @@
   transition: box-shadow .2s ease,border .2s ease;
 }
 
-.form-button:hover {
+:local(.form-button:hover) {
   cursor: pointer;
   box-shadow: 0 3px 15px 0 rgba(0,0,0,.25);
 }

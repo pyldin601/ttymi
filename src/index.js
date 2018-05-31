@@ -7,6 +7,7 @@ import configureStore from './store/configureStore';
 import reducers from './store/reducers';
 
 import './index.css';
+import 'xterm/dist/xterm.css';
 import { getInitialApplicationState } from './store/state';
 
 const store = configureStore(reducers, getInitialApplicationState());

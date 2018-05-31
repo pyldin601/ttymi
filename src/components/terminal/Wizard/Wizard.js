@@ -3,7 +3,7 @@
 import React from 'react';
 import { compose, withState, withHandlers } from 'recompose';
 import Prompt from '../Prompt/Prompt';
-import Connection from '../Connection/Connection';
+import Terminal from '../Terminal/Terminal';
 
 const Step = {
   PROMPT: Symbol(),
@@ -17,7 +17,7 @@ const Wizard = ({ step, handleForm }) => {
     case Step.PROMPT:
       return <Prompt onSubmit={handleForm} />;
     case Step.CONNECT:
-      return <Connection {...step.payload} />;
+      return <Terminal {...step.payload} />;
     default:
       return null;
   }
