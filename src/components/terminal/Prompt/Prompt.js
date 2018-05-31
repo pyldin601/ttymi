@@ -2,29 +2,53 @@
 
 import React from 'react';
 import { compose, withState, withHandlers } from 'recompose';
+import styles from './Prompt.css';
 
 const Prompt = ({ host, username, password, handleChange, handleSubmit }) => (
-  <form onSubmit={handleSubmit}>
-    <div>
-      <label>
-        Host:
-        <input type="text" name="host" value={host} onChange={handleChange} />
-      </label>
+  <div className={styles['form-wrap']}>
+    <div className={styles['form-cell']}>
+      <form className={styles['form-content']} onSubmit={handleSubmit}>
+        <div className={styles['form-group']}>
+          <label className={styles['form-label']}>HOST NAME</label>
+          <input className={styles['form-input']}
+                 autoFocus={true}
+                 tabIndex={0}
+                 type="text"
+                 name="host"
+                 value={host}
+                 onChange={handleChange}
+          />
+        </div>
+        <div className={styles['form-group']}>
+          <label className={styles['form-label']}>USER NAME</label>
+          <input className={styles['form-input']}
+                 tabIndex={1}
+                 type="text"
+                 name="username"
+                 value={username}
+                 onChange={handleChange}
+          />
+        </div>
+        <div className={styles['form-group']}>
+          <label className={styles['form-label']}>PASSWORD</label>
+          <input className={styles['form-input']}
+                 tabIndex={2}
+                 type="password"
+                 name="password"
+                 value={password}
+                 onChange={handleChange}
+          />
+        </div>
+        <div className={styles['form-footer']}>
+          <button className={styles['form-button']}
+                  type={"submit"}
+          >
+            Connect
+          </button>
+        </div>
+      </form>
     </div>
-    <div>
-      <label>
-        Username:
-        <input type="text" name="username" value={username} onChange={handleChange} />
-      </label>
-    </div>
-    <div>
-      <label>
-        Password:
-        <input type="password" name="password" value={password} onChange={handleChange} />
-      </label>
-    </div>
-    <button type={"submit"}>Connect</button>
-  </form>
+  </div>
 );
 
 export default compose(
