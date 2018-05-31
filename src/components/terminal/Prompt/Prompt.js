@@ -11,6 +11,7 @@ const Prompt = ({ host, username, password, handleChange, handleSubmit }) => (
         <div className={styles['form-group']}>
           <label className={styles['form-label']}>HOST NAME</label>
           <input className={styles['form-input']}
+                 placeholder="Enter your host name"
                  autoFocus={true}
                  tabIndex={0}
                  type="text"
@@ -22,6 +23,7 @@ const Prompt = ({ host, username, password, handleChange, handleSubmit }) => (
         <div className={styles['form-group']}>
           <label className={styles['form-label']}>USER NAME</label>
           <input className={styles['form-input']}
+                 placeholder="Enter your name"
                  tabIndex={1}
                  type="text"
                  name="username"
@@ -32,6 +34,7 @@ const Prompt = ({ host, username, password, handleChange, handleSubmit }) => (
         <div className={styles['form-group']}>
           <label className={styles['form-label']}>PASSWORD</label>
           <input className={styles['form-input']}
+                 placeholder="Enter your password"
                  tabIndex={2}
                  type="password"
                  name="password"
