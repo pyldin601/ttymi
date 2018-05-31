@@ -15,7 +15,7 @@ const makeStep = (id: Symbol, payload: any = null) => ({ id, payload });
 const Wizard = ({ step, handleForm, handleError, handleDisconnect }) => {
   switch (step.id) {
     case Step.PROMPT:
-      return <Prompt onSubmit={handleForm} />;
+      return <Prompt {...step.payload} onSubmit={handleForm} />;
     case Step.CONNECT:
       return <Terminal {...step.payload} onError={handleError} onDisconnect={handleDisconnect} />;
     default:
@@ -31,7 +31,7 @@ export default compose(
     },
     handleError: () => (err) => {},
     handleDisconnect: ({ setStep }) => () => {
-      setStep(makeStep(Step.PROMPT));
+      setStep(({ payload: { host, username } }) => makeStep(Step.PROMPT, { host, username }));
     },
   }),
 )(Wizard);

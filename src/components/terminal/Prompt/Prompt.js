@@ -57,12 +57,17 @@ const Prompt = ({ host, username, password, handleChange, handleSubmit }) => (
   </div>
 );
 
+Prompt.defaultProps = {
+  host: '',
+  username: '',
+};
+
 export default compose(
-  withState('formState', 'setFormState', {
-    host: '',
-    username: '',
+  withState('formState', 'setFormState', ({ host, username }) => ({
+    host,
+    username,
     password: '',
-  }),
+  })),
   withHandlers({
     handleChange: ({ setFormState }) => evt => {
       const { name, value } = evt.target;
