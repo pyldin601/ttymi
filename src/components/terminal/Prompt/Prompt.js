@@ -8,6 +8,9 @@ const Prompt = ({ host, username, password, handleChange, handleSubmit }) => (
   <div className={styles['form-wrap']}>
     <div className={styles['form-cell']}>
       <form className={styles['form-content']} onSubmit={handleSubmit}>
+        <h1 className={styles['form-heading']}>
+          Connect to your server.
+        </h1>
         <div className={styles['form-group']}>
           <label className={styles['form-label']}>HOST NAME</label>
           <input className={styles['form-input']}

@@ -16,6 +16,13 @@
   position: relative;
 }
 
+.form-heading {
+  font-size: 28px;
+  font-weight: 400;
+  color: #434C5F;
+  margin-bottom: 32px;
+}
+
 .form-content {
   clear: both;
   width: 90%;
