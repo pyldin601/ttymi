@@ -2,6 +2,7 @@
   "name": "koa-boilerplate",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
@@ -12,19 +13,15 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Roman Lakhtadyr <roman.lakhtadyr@gmail.com>",
+  "license": "",
   "dependencies": {
     "cross-env": "^5.1.5",
-    "es6-promisify": "^6.0.0",
-    "inversify": "^4.11.1",
     "koa": "^2.5.0",
     "koa-router": "^7.4.0",
     "koa-websocket": "^4.1.0",
     "nodemon": "^1.17.4",
-    "reflect-metadata": "^0.1.12",
     "ssh2": "^0.6.1",
-    "ts-node": "^6.0.3",
     "typescript": "^2.7.2",
     "winston": "^2.4.2"
   },
@@ -32,6 +29,7 @@
     "@types/koa": "^2.0.45",
     "@types/koa-router": "^7.0.28",
     "@types/node": "^10.0.8",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "ts-node": "^6.1.1"
   }
 }

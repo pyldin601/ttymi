@@ -2,11 +2,10 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["es6", "dom"],
-    "types": ["reflect-metadata"],
+    "types": [],
     "module": "commonjs",
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "outDir": "dist"
   },
   "files": ["src/start.ts"]

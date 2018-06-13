@@ -1,9 +1,12 @@
-import 'reflect-metadata';
-import { Container } from 'inversify';
-import providers from './providers';
+import * as Koa from 'koa';
+import * as websockify from 'koa-websocket';
+import { router, wsRouter } from './routers';
 
-const app = new Container();
+export default function createApp(): Koa {
+  const koa = websockify(new Koa());
 
-providers.forEach(registerService => registerService(app));
+  koa.use(router.routes(), router.allowedMethods());
+  koa.ws.use(wsRouter.routes(), wsRouter.allowedMethods());
 
-export default app;
+  return koa;
+}
