@@ -7,6 +7,7 @@ export function connectByPassword(host: string, port: number, username: string, 
     logger.info('Establishing connection to %s@%s:%d using password', username, host, port);
     client.on('error', (err) => {
       logger.error(err);
+      reject(err);
     });
     client.on('ready', () => {
       logger.info('Starting interactive shell');

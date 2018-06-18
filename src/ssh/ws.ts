@@ -14,9 +14,9 @@ export async function startClient(ws) {
       attachStreamToWebSocket(stream, ws);
 
       ws.removeListener('close', onClose);
-    } catch (e) {
-      ws.send('Bad connection object');
-      ws.terminate();
+    } catch (error) {
+      //ws.send('Bad connection object');
+      ws.close(4500, error.message);
     }
   };
 
