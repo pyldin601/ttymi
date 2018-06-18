@@ -29,10 +29,10 @@ export default class Terminal extends Component {
     const xterm = this.openTerminal();
 
     try {
-      await attach(xterm, this.ws);
-      this.props.onDisconnect();
-    } catch (err) {
-      this.props.onError(err);
+      const exitData = await attach(xterm, this.ws);
+      this.props.onDisconnect(exitData);
+    } catch (error) {
+      this.props.onError(error);
     }
   }
 

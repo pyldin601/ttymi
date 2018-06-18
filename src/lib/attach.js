@@ -19,10 +19,9 @@ const bind = (xterm, ws) => {
 export default (xterm, ws) => {
   return new Promise((resolve, reject) => {
     ws.onmessage = ({ data }) => xterm.write(data);
-    ws.onclose = () => resolve();
+    ws.onclose = ({ code, reason }) => resolve({ code, reason });
     ws.onerror = (err) => reject(err);
 
     bind(xterm, ws);
-
   });
 };

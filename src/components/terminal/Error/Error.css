@@ -1,0 +1,18 @@
+@value main-font from "../../../styles/fonts.css";
+@value color9 from "../../../styles/colors.css";
+
+:local(.error-wrap) {
+  font-family: main-font, sans-serif;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:local(.error-row) {
+  flex: none;
+  max-width: 50%;
+  text-align: center;
+}
