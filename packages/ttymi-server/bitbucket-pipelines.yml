@@ -1,0 +1,17 @@
+pipelines:
+  tags:
+    v*:
+      - step:
+          deployment: production
+          services:
+            - docker
+          script:
+            - export IMAGE_NAME=sshify/ttymi-server
+            - docker build --build-arg version=$BITBUCKET_TAG -t $IMAGE_NAME:$BITBUCKET_TAG .
+            - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
+            - docker push $IMAGE_NAME:$BITBUCKET_TAG
+      - step:
+          script:
+            - export IMAGE_NAME=sshify/ttymi-server
+            - ssh $DEPLOY_HOST -- docker service update --quiet --force --with-registry-auth --image=$IMAGE_NAME:$BITBUCKET_TAG $DEPLOY_SERVICE
+
