@@ -9,7 +9,7 @@ export interface IConnectMessage {
   privateKey?: string;
 }
 
-const connectMessage = object({
+export const connectMessage = object({
   host: string,
   port: string,
   username: string,

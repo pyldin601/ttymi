@@ -1,6 +1,6 @@
 // @flow strict
 import type WebSocket from 'ws';
-import { type IConnectMessage } from '@ttymi/ttymi-contracts';
+import { type IConnectMessage, connectMessageHello } from '@ttymi/ttymi-contracts';
 import { type ILoggerService } from '../services/loggerService';
 import { type ISshService } from '../services/sshService';
 

@@ -1,1 +1,4 @@
-export * from './terminal/connectMessage';
+// @flow strict
+import { IConnectMessage, connectMessage } from './terminal/connectMessage';
+
+export { IConnectMessage, connectMessage };
