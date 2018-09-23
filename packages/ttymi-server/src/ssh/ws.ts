@@ -1,7 +1,8 @@
+import WebSocket from 'ws';
 import * as logger from '../utils/logger';
 import { connectByPassword } from './connect';
 
-export async function startClient(ws) {
+export async function acceptConnectionRequest(ws: WebSocket) {
   const onClose = () => {
     logger.info('Connection closed before initialized');
   };
@@ -46,7 +47,9 @@ export function attachStreamToWebSocket(stream, ws) {
         }
 
         case 'resize': {
-          const { size: { rows, cols } } = message;
+          const {
+            size: { rows, cols },
+          } = message;
           stream.setWindow(rows, cols);
           break;
         }

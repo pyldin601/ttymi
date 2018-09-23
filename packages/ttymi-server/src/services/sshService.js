@@ -3,7 +3,7 @@ import { Duplex } from 'stream';
 import { Client } from 'ssh2';
 import { ILoggerService } from './loggerService';
 
-export interface ISSHService {
+export interface ISshService {
   connectByPassword(
     host: string,
     port: number,
@@ -19,7 +19,7 @@ export interface ISSHService {
   ): Promise<Duplex>;
 }
 
-export class SSHService implements ISSHService {
+export class SshService implements ISshService {
   loggerService: ILoggerService;
 
   constructor(loggerService: ILoggerService) {
