@@ -1,0 +1,12 @@
+{
+  "name": "@ttymi/ttymi-contracts",
+  "version": "2.0.0",
+  "private": true,
+  "main": "src/index.js",
+  "peerDependencies": {
+    "typed-contracts": "^1.1.0"
+  },
+  "devDependencies": {
+    "typed-contracts": "^1.1.0"
+  }
+}

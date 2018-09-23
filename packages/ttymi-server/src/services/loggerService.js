@@ -7,17 +7,17 @@ export interface ILoggerService {
 }
 
 export class WinstonLoggerService implements ILoggerService {
-  logger = createLogger({
+  _logger = createLogger({
     level: 'info',
     format: format.sinple(),
     transports: [new transports.Console({ filename: 'error.log', level: 'info' })],
   });
 
   info(message: string, ...args: any[]) {
-    this.logger(message, ...args);
+    this._logger(message, ...args);
   }
 
   error(message: string, ...args: any[]) {
-    this.logger(message, ...args);
+    this._logger(message, ...args);
   }
 }

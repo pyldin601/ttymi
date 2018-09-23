@@ -20,10 +20,10 @@ export interface ISshService {
 }
 
 export class SshService implements ISshService {
-  loggerService: ILoggerService;
+  _loggerService: ILoggerService;
 
   constructor(loggerService: ILoggerService) {
-    this.loggerService = loggerService;
+    this._loggerService = loggerService;
   }
 
   connectByPassword(
