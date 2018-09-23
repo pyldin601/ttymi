@@ -8,6 +8,7 @@ const presets = [
       useBuiltIns: 'usage',
     },
   ],
+  '@babel/flow',
 ];
 
 module.exports = { presets };

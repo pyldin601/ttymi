@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
+    "check:types": "flow src",
     "build:babel": "babel src --out-dir dist",
     "build": "tsc",
     "prebuild": "npm run clean",
@@ -35,6 +36,7 @@
     "@types/koa": "^2.0.45",
     "@types/koa-router": "^7.0.28",
     "@types/node": "^10.0.8",
+    "flow-bin": "^0.81.0",
     "rimraf": "^2.6.2",
     "ts-node": "^6.1.1"
   }
