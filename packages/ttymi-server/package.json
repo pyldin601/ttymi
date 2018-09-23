@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
+    "build:babel": "babel src --out-dir dist",
     "build": "tsc",
     "prebuild": "npm run clean",
     "start": "cross-env NODE_ENV=production node dist/start.js",
@@ -16,6 +17,7 @@
   "author": "Roman Lakhtadyr <roman.lakhtadyr@gmail.com>",
   "license": "",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "cross-env": "^5.1.5",
     "koa": "^2.5.0",
     "koa-router": "^7.4.0",
@@ -26,6 +28,10 @@
     "winston": "^2.4.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-flow": "^7.0.0",
     "@types/koa": "^2.0.45",
     "@types/koa-router": "^7.0.28",
     "@types/node": "^10.0.8",
