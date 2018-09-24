@@ -1,3 +1,4 @@
+// @flow strict
 import { WsServer } from 'ws-mock';
 import { empty, Observable, Subject } from 'rxjs';
 import { websocketToObservable } from './webSocketToObservable';
@@ -6,7 +7,7 @@ test('Should receive message', done => {
   const wsServer = new WsServer();
 
   wsServer.on('connection', ws => {
-    const input$ = empty();
+    const input$ = new Subject();
     const ws$ = websocketToObservable(ws, input$);
 
     ws$.subscribe(message => {
@@ -24,7 +25,7 @@ test('Should correctly close stream', done => {
   const wsServer = new WsServer();
 
   wsServer.on('connection', ws => {
-    const input$ = empty();
+    const input$ = new Subject();
     const ws$ = websocketToObservable(ws, input$);
 
     ws$.subscribe({
