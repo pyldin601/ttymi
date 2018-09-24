@@ -1,11 +1,2 @@
-[ignore]
-
-[untyped]
-
-[include]
-
 [libs]
-
-[options]
-
-[version]
+flow-typed
