@@ -2,14 +2,12 @@ import { WsServer } from 'ws-mock';
 import { empty, Observable } from 'rxjs';
 import { websocketToObservable } from './webSocketToObservable';
 
-test('Should receive message from websocket', done => {
+test('Should receive message', done => {
   const wsServer = new WsServer();
 
   wsServer.on('connection', ws => {
     const input$ = empty();
     const ws$ = websocketToObservable(ws, input$);
-
-    expect(ws$).toBeInstanceOf(Observable);
 
     ws$.subscribe(message => {
       expect(message).toBe('foo');
@@ -20,6 +18,23 @@ test('Should receive message from websocket', done => {
   const connection = wsServer.addConnection();
 
   connection.sendMsgToServer('foo');
+});
 
-  expect.assertions(2);
+test('Should correctly close stream', done => {
+  const wsServer = new WsServer();
+
+  wsServer.on('connection', ws => {
+    const input$ = empty();
+    const ws$ = websocketToObservable(ws, input$);
+
+    ws$.subscribe({
+      complete: () => {
+        done();
+      },
+    });
+  });
+
+  const connection = wsServer.addConnection();
+
+  connection.closeConnection();
 });
