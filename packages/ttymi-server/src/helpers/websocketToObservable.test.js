@@ -10,7 +10,7 @@ test('Should read message from websocket', async () => {
   const writable$ = new Subject();
   const readable$ = websocketToObservable(connection, writable$);
 
-  setImmediate(() => {
+  process.nextTick(() => {
     connection.sendMsgToServer('foo');
     connection.closeConnection();
   });
@@ -27,7 +27,7 @@ test('Should complete subscriptions when websocket disconnected', async () => {
   const writable$ = new Subject();
   const readable$ = websocketToObservable(connection, writable$);
 
-  setImmediate(() => connection.closeConnection());
+  process.nextTick(() => connection.closeConnection());
 
   expect(writable$.observers.length).toBe(1);
   await readable$.toPromise();
@@ -53,7 +53,7 @@ test('Should close input subscription on socket close', async () => {
   const writable$ = new Subject();
   const readable$ = websocketToObservable(connection, writable$);
 
-  setImmediate(() => connection.closeConnection());
+  process.nextTick(() => connection.closeConnection());
 
   expect(writable$.observers.length).toBe(1);
 
