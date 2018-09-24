@@ -8,11 +8,6 @@ export function websocketToObservable(ws: WebSocket, input$: Subject<string>): O
     ws.on('close', () => observer.complete());
     ws.on('error', err => observer.error(err));
 
-    const inputSubscription = input$.subscribe(data => ws.send(data));
-
-    return () => {
-      ws.close();
-      inputSubscription.unsubscribe();
-    };
+    input$.subscribe(data => ws.send(data));
   });
 }

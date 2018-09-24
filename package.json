@@ -2,10 +2,9 @@
   "name": "ttymi",
   "private": true,
   "scripts": {
-    "test": "jest --env=node"
+    "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {
-    "jest": "^23.6.0",
     "lerna": "^3.4.0"
   }
 }

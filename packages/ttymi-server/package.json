@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
     "check:types": "flow src",
@@ -11,8 +10,7 @@
     "build": "tsc",
     "prebuild": "npm run clean",
     "start": "cross-env NODE_ENV=production node dist/start.js",
-    "dev": "cross-env NODE_ENV=development nodemon --watch src --exec ts-node src/start.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "cross-env NODE_ENV=development nodemon --watch src --exec ts-node src/start.ts"
   },
   "keywords": [],
   "author": "Roman Lakhtadyr <roman.lakhtadyr@gmail.com>",
@@ -40,6 +38,7 @@
     "@types/node": "^10.0.8",
     "flow-bin": "^0.81.0",
     "rimraf": "^2.6.2",
-    "ts-node": "^6.1.1"
+    "ts-node": "^6.1.1",
+    "ws-mock": "0.0.1"
   }
 }
