@@ -19,15 +19,16 @@
   "license": "",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
+    "@ttymi/ttymi-contracts": "2.0.0",
     "cross-env": "^5.1.5",
     "koa": "^2.5.0",
     "koa-router": "^7.4.0",
     "koa-websocket": "^4.1.0",
     "nodemon": "^1.17.4",
+    "rxjs": "^6.3.2",
     "ssh2": "^0.6.1",
     "typescript": "^2.7.2",
-    "winston": "^2.4.2",
-    "@ttymi/ttymi-contracts": "2.0.0"
+    "winston": "^2.4.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
