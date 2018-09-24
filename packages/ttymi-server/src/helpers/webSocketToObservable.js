@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 import type WebSocket from 'ws';
 import { Observable, type Observer, Subject } from 'rxjs';
 
