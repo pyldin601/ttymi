@@ -4,6 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
     "clean": "rimraf dist",
     "check:types": "flow src",
     "build:babel": "babel src --out-dir dist",
@@ -31,14 +33,59 @@
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-transform-flow-strip-types": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-flow": "^7.0.0",
     "@types/koa": "^2.0.45",
     "@types/koa-router": "^7.0.28",
     "@types/node": "^10.0.8",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
     "flow-bin": "^0.81.0",
+    "jest": "^23.6.0",
+    "regenerator-runtime": "^0.12.1",
     "rimraf": "^2.6.2",
     "ts-node": "^6.1.1",
     "ws-mock": "0.0.1"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "targets": {
+                "node": "current"
+              }
+            }
+          ]
+        ]
+      }
+    },
+    "plugins": [
+      "@babel/plugin-transform-flow-strip-types",
+      "@babel/plugin-proposal-class-properties"
+    ]
   }
 }
