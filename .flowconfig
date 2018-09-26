@@ -1,2 +1,1 @@
 [options]
-module.name_mapper='^@ttymi/\(.*\)$' -> '<PROJECT_ROOT>/packages/\1/src/index.js'

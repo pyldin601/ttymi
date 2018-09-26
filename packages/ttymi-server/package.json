@@ -1,5 +1,5 @@
 {
-  "name": "koa-boilerplate",
+  "name": "ttymi-server",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -19,7 +19,7 @@
   "license": "",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "@ttymi/ttymi-contracts": "2.0.0",
+    "ttymi-contracts": "2.0.0",
     "cross-env": "^5.1.5",
     "koa": "^2.5.0",
     "koa-router": "^7.4.0",
