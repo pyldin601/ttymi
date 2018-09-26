@@ -3,55 +3,61 @@ import { WsServer } from 'ws-mock';
 import { empty, Observable, Subject } from 'rxjs';
 import { websocketToObservable } from './webSocketToObservable';
 
-test('Should receive message', done => {
+test('Should read message from websocket', async () => {
   const wsServer = new WsServer();
-
-  wsServer.on('connection', ws => {
-    const input$ = new Subject();
-    const ws$ = websocketToObservable(ws, input$);
-
-    ws$.subscribe(message => {
-      expect(message).toBe('foo');
-      done();
-    });
-  });
-
   const connection = wsServer.addConnection();
 
-  connection.sendMsgToServer('foo');
-});
+  const writable$ = new Subject();
+  const readable$ = websocketToObservable(connection, writable$);
 
-test('Should correctly close stream', done => {
-  const wsServer = new WsServer();
-
-  wsServer.on('connection', ws => {
-    const input$ = new Subject();
-    const ws$ = websocketToObservable(ws, input$);
-
-    ws$.subscribe({
-      complete: () => {
-        done();
-      },
-    });
+  process.nextTick(() => {
+    connection.sendMsgToServer('foo');
+    connection.closeConnection();
   });
 
+  const message = await readable$.toPromise();
+
+  expect(message).toBe('foo');
+});
+
+test('Should complete subscriptions when websocket disconnected', async () => {
+  const wsServer = new WsServer();
   const connection = wsServer.addConnection();
 
-  connection.closeConnection();
+  const writable$ = new Subject();
+  const readable$ = websocketToObservable(connection, writable$);
+
+  process.nextTick(() => connection.closeConnection());
+
+  expect(writable$.observers.length).toBe(1);
+  await readable$.toPromise();
+  expect(writable$.observers.length).toBe(0);
 });
 
-test('Should send message', done => {
+test('Should send message to websocket', () => {
   const wsServer = new WsServer();
+  const connection = wsServer.addConnection();
 
-  wsServer.on('connection', ws => {
-    const input$ = new Subject();
-    const ws$ = websocketToObservable(ws, input$);
+  const writable$ = new Subject();
+  const readable$ = websocketToObservable(connection, writable$);
 
-    input$.next('foo');
+  writable$.next('foo');
 
-    expect(ws.messages).toEqual(['foo']);
-    done();
-  });
+  expect(connection.messages).toEqual(['foo']);
+});
 
-  wsServer.addConnection();
+test('Should close input subscription on socket close', async () => {
+  const wsServer = new WsServer();
+  const connection = wsServer.addConnection();
+
+  const writable$ = new Subject();
+  const readable$ = websocketToObservable(connection, writable$);
+
+  process.nextTick(() => connection.closeConnection());
+
+  expect(writable$.observers.length).toBe(1);
+
+  await readable$.toPromise();
+
+  expect(writable$.observers.length).toBe(0);
 });
